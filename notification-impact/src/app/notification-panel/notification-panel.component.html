@@ -1,9 +1,11 @@
 <div class="panel">
     <h2>Send notifications</h2>
+    <h3>Notification type</h3>
     <mat-radio-group class="notif-type" [(ngModel)]="selectedNotificationType">
         <mat-radio-button class="radio-button" *ngFor="let option of notificationTypes" [value]="option">
             {{option}}
         </mat-radio-button>
     </mat-radio-group>
+    <!-- TODO: add more notification options. -->
     <button mat-raised-button color="primary" (click)="submit()">Submit</button>
 </div>

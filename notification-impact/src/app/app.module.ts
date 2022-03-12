@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationStreamComponent } from './notification-stream/notification-stream.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NotificationPanelComponent
+        NotificationPanelComponent,
+        NotificationStreamComponent
     ],
     imports: [
         BrowserModule,

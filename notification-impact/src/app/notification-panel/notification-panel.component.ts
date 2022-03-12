@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-notification-panel',
@@ -8,16 +7,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class NotificationPanelComponent {
 
-
-    notifTypeOptions = [{ name: "Social Media", val: 'social' },
-    { name: "Phone call", val: 'call' },
-    { name: "Text Message", val: 'text' }];
-    notificationType = '';
+    notificationTypes = ["Social Media", "Phone call", "Text Message"];
+    selectedNotificationType = '';
 
     constructor() { }
 
     submit() {
-        console.log(this.notificationType);
+        console.log(this.selectedNotificationType);
     }
-
 }

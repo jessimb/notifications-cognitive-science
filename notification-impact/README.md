@@ -25,3 +25,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Deploy
+
+### Pre-req
+Install firebase cli: `npm install -g firebase-tools`
+
+
+### Push live
+
+Ensure you have built the app: `ng build`.
+
+Run `firebase deploy` to deploy from the current directory. 
+
+Visit https://emotifications.web.app/ to verify it was deployed.
+

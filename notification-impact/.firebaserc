@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "emotifications",
+    "production": "emotifications"
+  },
+  "targets": {}
+}

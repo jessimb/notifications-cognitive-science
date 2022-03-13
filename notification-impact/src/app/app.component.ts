@@ -23,9 +23,9 @@ const firebaseConfig = {
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'Notifications + Cognitive Science';
+    title = 'Emotifications';
 
     // Initialize Firebase
-    // app = initializeApp(firebaseConfig);
-    // analytics = getAnalytics(this.app);
+    app = initializeApp(firebaseConfig);
+    analytics = getAnalytics(this.app);
 }

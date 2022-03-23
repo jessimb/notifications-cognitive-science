@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationStreamComponent } from './notification-stream/notification-stream.component';
+import { NotificationService } from './notification.service';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,7 @@ import { NotificationStreamComponent } from './notification-stream/notification-
         MatButtonModule,
         BrowserAnimationsModule,
     ],
-    providers: [],
+    providers: [NotificationService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

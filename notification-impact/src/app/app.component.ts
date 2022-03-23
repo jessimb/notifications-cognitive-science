@@ -8,13 +8,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDwGEfo2yN-jH3gHTc6-QGPugjMc2eohJU",
-    authDomain: "emotifications.firebaseapp.com",
-    projectId: "emotifications",
-    storageBucket: "emotifications.appspot.com",
-    messagingSenderId: "947181223723",
-    appId: "1:947181223723:web:9e9655bb679cec3edbcf6e",
-    measurementId: "G-BZE8G3FSNG"
+  apiKey: "AIzaSyC3MBl6rFoNChhex7zbCPH6KRZYiRSNo-A",
+  authDomain: "emotifications.firebaseapp.com",
+  projectId: "emotifications",
+  storageBucket: "emotifications.appspot.com",
+  messagingSenderId: "184982393967",
+  appId: "1:184982393967:web:6bf54ce67176ca3df9a99a",
+  measurementId: "G-2FGVH846HR"
 };
 
 @Component({

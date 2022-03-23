@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Notification, NotificationService } from '../notification.service';
 
 @Component({
     selector: 'app-notification-panel',
@@ -10,9 +11,13 @@ export class NotificationPanelComponent {
     notificationTypes = ["Social Media", "Phone call", "Text Message"];
     selectedNotificationType = '';
 
-    constructor() { }
+    constructor(private notificationService: NotificationService) { }
 
     submit() {
         console.log(this.selectedNotificationType);
+        const notif = {
+            type: this.selectedNotificationType
+        } as Notification;
+        this.notificationService.triggerNotification(notif);
     }
 }

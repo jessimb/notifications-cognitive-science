@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
+You'll probably need to run `npm install` to get the relevant dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -23,7 +25,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Deploy
 
 ### Pre-req
-Install firebase cli: `npm install -g firebase-tools`
+Install firebase cli: `sudo npm install -g firebase-tools`
 
 
 ### Push live

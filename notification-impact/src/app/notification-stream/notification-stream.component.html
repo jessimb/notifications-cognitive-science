@@ -1,4 +1,8 @@
 <div class="container">
     <h1>Notifications</h1>
-    <p>Notifications will go here.</p>
+    <div class="notifications">
+        <div *ngFor="let notif of notifications">
+            <p> {{notif.message}} </p>
+        </div>
+    </div>
 </div>

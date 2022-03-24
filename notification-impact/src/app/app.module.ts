@@ -10,12 +10,16 @@ import { NotificationPanelComponent } from './notification-panel/notification-pa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationStreamComponent } from './notification-stream/notification-stream.component';
 import { NotificationService } from './notification.service';
+import { CognitiveLoadBarComponent } from './cognitive-load-bar/cognitive-load-bar.component';
+import { StressBarComponent } from './stress-bar/stress-bar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NotificationPanelComponent,
-        NotificationStreamComponent
+        NotificationStreamComponent,
+        CognitiveLoadBarComponent,
+        StressBarComponent
     ],
     imports: [
         BrowserModule,

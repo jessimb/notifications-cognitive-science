@@ -6,3 +6,13 @@
 .user-panel {
     width: 50%;
 }
+
+.user {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+img {
+    width: 30%;
+}

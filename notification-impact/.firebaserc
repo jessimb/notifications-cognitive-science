@@ -1,7 +1,14 @@
 {
   "projects": {
-    "default": "emotifications",
-    "production": "emotifications"
+    "default": "emotifications"
   },
-  "targets": {}
+  "targets": {
+    "emotifications": {
+      "hosting": {
+        "notification-impact": [
+          "emotifications"
+        ]
+      }
+    }
+  }
 }

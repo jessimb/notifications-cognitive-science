@@ -24,15 +24,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Deploy
 
-### Pre-req
+<!-- ### Pre-req
 Install firebase cli: `sudo npm install -g firebase-tools`
 
+Run `firebase init hosting`
+
+See more: https://firebase.google.com/docs/hosting/quickstart -->
 
 ### Push live
 
 Ensure you have built the app: `ng build`.
 
-Run `firebase deploy` to deploy from the current directory. 
+<!-- Run `firebase deploy --only hosting` to deploy from the current directory.  -->
+
+Run `ng deploy`.
 
 Visit https://emotifications.web.app/ to verify it was deployed.
 

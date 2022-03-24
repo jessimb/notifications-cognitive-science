@@ -49,3 +49,7 @@ Thumbs.db
 
 # firebase
 /.firebase/
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

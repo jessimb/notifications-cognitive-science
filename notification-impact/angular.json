@@ -123,6 +123,16 @@
               "devServerTarget": "notification-impact:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "notification-impact:build:production",
+            "firebaseProject": "emotifications",
+            "firebaseHostingSite": "emotifications"
+          }
         }
       }
     }

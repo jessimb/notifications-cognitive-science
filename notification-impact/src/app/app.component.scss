@@ -1,18 +1,5 @@
 .container {
     display: flex;
     justify-content: space-between;
-}
-
-.user-panel {
-    width: 50%;
-}
-
-.user {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-}
-
-img {
-    width: 30%;
+    align-items: flex-end;
 }

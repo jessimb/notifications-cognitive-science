@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Notification, NotificationService } from '../notification.service';
+import { NotificationConfig, NotificationService } from '../notification.service';
 
 @Component({
     selector: 'app-notification-panel',
@@ -17,7 +17,7 @@ export class NotificationPanelComponent {
         console.log(this.selectedNotificationType);
         const notif = {
             type: this.selectedNotificationType
-        } as Notification;
-        this.notificationService.triggerNotification(notif);
+        } as NotificationConfig;
+        this.notificationService.generateModel(notif);
     }
 }

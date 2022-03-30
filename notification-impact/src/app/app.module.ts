@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { StressBarComponent } from './stress-bar/stress-bar.component';
         FormsModule,
         MatButtonModule,
         BrowserAnimationsModule,
+        NgxChartsModule,
     ],
     providers: [NotificationService],
     bootstrap: [AppComponent]

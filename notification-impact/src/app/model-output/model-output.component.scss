@@ -1,23 +1,8 @@
 .container {
-    border: 1px solid black;
-    border-radius: 8px;
+    // border: 1px solid black;
+    // border-radius: 8px;
     margin: 16px;
-    padding: 16px;
+    // padding: 16px;
+    width: 66vw;
+    height: 75vh;
 }
-
-.notifications {
-    max-height: 25vh;
-    height: 25vh;
-    overflow: auto;
-}
-
-::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, .5);
-    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
-  }

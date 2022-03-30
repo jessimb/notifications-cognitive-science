@@ -1,8 +1,18 @@
 <div class="container">
-    <h1>Model Output</h1>
-    <div class="notifications">
-        <div *ngFor="let notif of notifications">
-            <p> {{notif.message}} </p>
-        </div>
-    </div>
+    <ngx-charts-line-chart [results]="modelData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="false"
+        [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'time'" [yAxisLabel]="'stress level'"
+        [autoScale]="true">
+        <ng-template #seriesTooltipTemplate let-model="model">
+            <div class="tooltip">
+                Hover over the point for more information.
+            </div>
+        </ng-template>
+        <ng-template #tooltipTemplate let-model="model">
+            <div class="tooltip">
+                Stress level: {{model.value}}
+                <p *ngIf="model.tooltipText">{{model.tooltipText}}</p>
+            </div>
+        </ng-template>
+    </ngx-charts-line-chart>
+    <!-- [scheme]="colorScheme" [view]="[700, 400]"  (select)="onSelect($event)" -->
 </div>

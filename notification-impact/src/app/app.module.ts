@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModelOutputComponent } from './model-output/model-output';
+import { ModelOutputComponent } from './model-output/model-output.component';
 import { NotificationService } from './notification.service';
 import { StressBarComponent } from './stress-bar/stress-bar.component';
 

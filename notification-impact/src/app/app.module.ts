@@ -8,17 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotificationStreamComponent } from './notification-stream/notification-stream.component';
+import { ModelOutputComponent } from './model-output/model-output';
 import { NotificationService } from './notification.service';
-import { CognitiveLoadBarComponent } from './cognitive-load-bar/cognitive-load-bar.component';
 import { StressBarComponent } from './stress-bar/stress-bar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NotificationPanelComponent,
-        NotificationStreamComponent,
-        CognitiveLoadBarComponent,
+        ModelOutputComponent,
         StressBarComponent
     ],
     imports: [

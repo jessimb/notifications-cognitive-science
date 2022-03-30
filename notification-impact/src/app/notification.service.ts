@@ -16,7 +16,7 @@ export interface NotificationConfig {
 export class NotificationService {
 
     // Observable sources
-    private modelOutput = new Subject<number>(); // TODO 
+    private modelOutput = new Subject<number>(); // TODO - change type
 
     // Observable streams
     stressModel$ = this.modelOutput.asObservable();
@@ -24,10 +24,10 @@ export class NotificationService {
     constructor() { }
 
     updateChart(stress: number) {
-        this.modelOutput.next(stress); // TODO
+        this.modelOutput.next(stress); // TODO - send model data
     }
 
-    generateModel(notif: NotificationConfig) {
+    generateModel(notifConfig: NotificationConfig) {
         // TODO take in input, calculate output
     }
 }

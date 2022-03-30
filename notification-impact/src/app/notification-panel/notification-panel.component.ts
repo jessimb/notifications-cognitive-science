@@ -13,6 +13,7 @@ export class NotificationPanelComponent {
 
     constructor(private notificationService: NotificationService) { }
 
+    // TODO - this should submit a schedule of notifications
     submit() {
         console.log(this.selectedNotificationType);
         const notif = {

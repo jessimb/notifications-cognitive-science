@@ -1,11 +1,29 @@
+<h1>Notification schedule</h1> 
 <div class="panel">
-    <h2>Send notifications</h2>
-    <h3>Notification type</h3>
-    <mat-radio-group class="notif-type" [(ngModel)]="selectedNotificationType">
-        <mat-radio-button class="radio-button" *ngFor="let option of notificationTypes" [value]="option">
-            {{option}}
-        </mat-radio-button>
-    </mat-radio-group>
-    <!-- TODO: add more notification options. -->
-    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    <div *ngFor="let entry of notificationSchedule" class="entry">
+        <mat-form-field appearance="fill">
+            <mat-label>Type</mat-label>
+            <mat-select [(ngModel)]="entry.type" name="type">
+                <mat-option *ngFor="let type of notificationTypes" [value]="type">
+                    {{type}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Start time</mat-label>
+            <input matInput type="time" [(ngModel)]="entry.startTime">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Count</mat-label>
+            <input matInput type="number" [(ngModel)]="entry.count">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Frequency</mat-label>
+            <input matInput type="number" [(ngModel)]="entry.frequency">
+        </mat-form-field>
+    </div>
+</div>
+<div class="actions">
+    <button mat-raised-button color="primary" (click)="appendBlankEntry()">Add New Entry</button>
+    <button mat-raised-button color="primary" (click)="submit()">Simulate</button>
 </div>

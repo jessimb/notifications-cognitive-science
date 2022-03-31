@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NotificationConfig, NotificationService } from '../notification.service';
+import { NotificationConfigEntry, NotificationService } from '../notification.service';
 
 @Component({
     selector: 'app-notification-panel',
@@ -8,17 +8,27 @@ import { NotificationConfig, NotificationService } from '../notification.service
 })
 export class NotificationPanelComponent {
 
-    notificationTypes = ["Social Media", "Phone call", "Text Message"];
-    selectedNotificationType = '';
+    // Keep up to date with notification service
+    notificationTypes = ['Social media', 'School or work', 'Entertainment', 'Productivity'];
+    
+    notificationSchedule: NotificationConfigEntry[] = [];
 
-    constructor(private notificationService: NotificationService) { }
+    constructor(private notificationService: NotificationService) {
+        this.appendBlankEntry();
+    }
 
-    // TODO - this should submit a schedule of notifications
+    appendBlankEntry() {
+        const entry = {
+            type: '', 
+            startTime: '',
+            count: 0,
+            frequency: 0,
+        } as NotificationConfigEntry;
+        this.notificationSchedule.push(entry);
+    }
+
     submit() {
-        console.log(this.selectedNotificationType);
-        const notif = {
-            type: this.selectedNotificationType
-        } as NotificationConfig;
-        this.notificationService.generateModel(notif);
+        // TODO - validate input, don't let bad input submit
+        this.notificationService.generateModel(this.notificationSchedule);
     }
 }

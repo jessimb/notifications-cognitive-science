@@ -48,6 +48,9 @@ export class ModelOutputComponent {
         },
     ]
 
-    constructor(private notificationService: NotificationService) { }
+    constructor(private notificationService: NotificationService) { 
+        // TODO subscribe to model output, update chart
+        // TODO provide way to clear chart
+    }
 
 }

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +30,8 @@ import { StressBarComponent } from './stress-bar/stress-bar.component';
         MatButtonModule,
         BrowserAnimationsModule,
         NgxChartsModule,
+        MatSelectModule,
+        MatInputModule,
     ],
     providers: [NotificationService],
     bootstrap: [AppComponent]

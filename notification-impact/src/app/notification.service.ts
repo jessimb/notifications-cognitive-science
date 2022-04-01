@@ -5,7 +5,7 @@ export interface NotificationConfigEntry {
   type: string,  // Will be one of notificationTypes
   startTime: string,  // 24H format, e.g. 18:30
   count: number,  // How many notifications to send
-  frequency: number,  // Every x minutes
+  frequency: number,  // Send notificaton every X minutes
 }
 
 // Keep up to date with notification-panel

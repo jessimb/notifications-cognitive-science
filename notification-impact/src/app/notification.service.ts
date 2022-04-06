@@ -37,6 +37,7 @@ export class NotificationService {
     notifications: Emotification[] = [];
 
     // Stress
+    stressArr: Number[] = [];
 
     constructor() { }
 
@@ -84,8 +85,114 @@ export class NotificationService {
             }
         }
 
-        // Calculate stress and generate stress array
-        
+        // Calculate stress over 24H
+        for (var currTime = 0; currTime < 1440 ; currTime++) {
+            // Start at 0 stress for each minute
+            var totalStress = 0;
+
+            // Get stress for each notification at currTime
+            for (var n = 0; n < this.notifications.length; n++) {
+                if (this.notifications[n].receiveTime <= currTime) {
+                    // Remove notification if expired
+                    if (this.notifications[n].age == this.notifications[n].ttl) {
+                        this.notifications.splice(n, 1);
+                    }
+                    totalStress += this.getStress(this.notifications[n]);
+                }
+            }
+
+            // Add stress at currTime to output array
+            this.stressArr.push(totalStress);
+
+            // TODO Add stress to series:
+            // modelData = [
+            //     {
+            //         "name": "Stress",
+            //         "series": [
+            //             {
+            //                 "name": new Date(2021, 4, 1, 0, 0, 0),
+            //                 "value": 0,
+            //             },
+            //             {
+            //                 "name": new Date(2021, 4, 1, 9, 0, 0),
+            //                 "value": 15,
+            //                 "tooltipText": 'work text'
+            //             },
+            //         ]
+            //     },
+            // ]
+        }
+
+        // Print stress values
+        console.log(this.stressArr);
+
+        // 
+    }
+
+    // Calculate stress
+    getStress(notification: Emotification) {
+        // Stress due to notificaton type
+        const stressTypeSocialMedia = 0;
+        const stressTypeSchoolWork = 0;
+        const stressTypeEntertainment = 0;
+        const stressTypeProductivity = 0;
+
+        // Stress due to notification context
+        const stressContextWorkSchool = 0;
+        const stressContextVehicle = 0;
+        const stressContextCaretaking = 0;
+        const stressContextLeisure = 0;
+        const stressContextFitness = 0;
+
+        // Stress due to notification frequency
+        const stressFreq1min = 0;
+        const stressFreq5min = 0;
+        const stressFreq15min = 0;
+        const stressFreq30min = 0;
+        const stressFreq1hour = 0;
+
+        var stressType = 0;
+        var stressContext = 0;
+        var stressFreq = 0;
+
+        // Get stress due to notification type
+        switch (notification.type) {
+            case 'Social media':
+                stressType = 0;
+                break;
+            case 'School or work':
+                stressType = 0;
+                break;
+            case 'Entertainment':
+                stressType = 0;
+                break;
+            case 'Productivity':
+                stressType = 0;
+                break;
+            default:
+                stressType = 0;
+        }
+
+        // Get stress due to notification context
+        if (notification.receiveTime >= this.getTimeNum('9:00') && notification.receiveTime <= this.getTimeNum("17:00")) {
+            stressContext = 0;
+        }
+
+        // Get stress due to notification frequency
+        if (notification.frequency >= 1 && notification.frequency < 5) {
+            stressFreq = 0;
+        } else if (notification.frequency >= 5 && notification.frequency < 15) {
+            stressFreq = 0;
+        } else if (notification.frequency >= 15 && notification.frequency < 30) {
+            stressFreq = 0;
+        } else if (notification.frequency >= 30 && notification.frequency < 60) {
+            stressFreq = 0;
+        } else if (notification.frequency >= 60) {
+            stressFreq = 0;
+        }
+
+        var stress = stressType * stressContext * stressFreq
+        return stress;
     }
 
     // Get TTL based on receive time of notification
@@ -108,7 +215,8 @@ export class NotificationService {
     getTimeNum(timeStr: string) {
         var timeArr = timeStr.split(":");
         var timeNum = (parseInt(timeArr[0]) * 60) + parseInt(timeArr[1]);
-        console.log("Converted " + timeStr + " to " + timeNum);
+        // console.log("Converted " + timeStr + " to " + timeNum);
+
         return timeNum;
     }
 }

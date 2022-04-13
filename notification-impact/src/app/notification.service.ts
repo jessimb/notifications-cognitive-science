@@ -5,7 +5,7 @@ export interface NotificationConfigEntry {
   type: string,  // Will be one of notificationTypes
   startTime: string,  // 24H format, e.g. 18:30
   count: number,  // How many notifications to send
-  frequency: number,  // Send notificaton every X minutes
+  frequency: number,  // Send 1 notificaton every X minutes (interval)
 }
 
 // Keep up to date with notification-panel
@@ -43,7 +43,7 @@ export class NotificationService {
 
             // Create 'count' notifications per notif config entry
             for (let j = 0; j < notifConfig[i].count; j++) {
-                const rtime = startTimeNum + (j * notifConfig[i].count)
+                const rtime = startTimeNum + (j * notifConfig[i].frequency)
                 const entry = {
                     type: notifConfig[i].type,
                     frequency: notifConfig[i].frequency,

@@ -20,30 +20,29 @@ export const notificationTypes = ['Social media', 'School or work', 'Entertainme
 export class NotificationService {
 
     // Observable sources
-    private modelOutput = new Subject<number>(); // TODO - change to model output type
+    private modelOutput = new Subject<any>();
 
     // Observable streams
     stressModel$ = this.modelOutput.asObservable();
 
     constructor() { }
 
-    updateChart(model: number) {
-        this.modelOutput.next(model); // TODO - send model data
+    updateChart(model: any) {
+        this.modelOutput.next(model);
     }
 
     generateModel(notifConfig: NotificationConfigEntry[]) {
-        // TODO calculate model output to send to chart
         console.log(notifConfig);
 
-        var notifications = [];
-        var stressArr = [];
+        let notifications = [];
+        let stressArr = [];
 
         // Generate notifications
-        for (var i  = 0; i < notifConfig.length; i++) {
+        for (let i  = 0; i < notifConfig.length; i++) {
             const startTimeNum = this.getTimeNum(notifConfig[i].startTime);
 
             // Create 'count' notifications per notif config entry
-            for (var j = 0; j < notifConfig[i].count; j++) {
+            for (let j = 0; j < notifConfig[i].count; j++) {
                 const rtime = startTimeNum + (j * notifConfig[i].count)
                 const entry = {
                     type: notifConfig[i].type,
@@ -57,12 +56,12 @@ export class NotificationService {
         }
 
         // Calculate stress over 24H
-        for (var currTime = 0; currTime < 1440 ; currTime++) {
+        for (let currTime = 0; currTime < 1440 ; currTime++) {
             // Start at 0 stress for each minute
-            var totalStress = 0;
+            let totalStress = 0;
 
             // Get stress for each notification at currTime
-            for (var n = 0; n < notifications.length; n++) {
+            for (let n = 0; n < notifications.length; n++) {
                 if (notifications[n].receiveTime <= currTime) {
                     notifications[n].age++;
                     // Remove notification if expired
@@ -83,29 +82,28 @@ export class NotificationService {
             stressArr.push(entry);
         }
 
-        var model = {
+        const model = [{
             name: "Stress",
             series: stressArr,
-        };
+        }];
 
         console.log(model);
-        // TODO Send to graph
+        this.updateChart(model);
     }
 
     // Convert time represented as 0-1440 number to Date object
     getDate(timeNum: number){
-        var hours = Math.floor(timeNum / 60);
-        var min = timeNum % 60;
-        // console.log("Time:", hours, min)
+        const hours = Math.floor(timeNum / 60);
+        const min = timeNum % 60;
 
         return new Date(2022, 4, 1, hours, min);
     }
 
     // Calculate stress
     getStress(notification: any) {
-        var stressType = 0;
-        var stressContext = 0;
-        var stressFreq = 0;
+        let stressType = 0;
+        let stressContext = 0;
+        let stressFreq = 0;
 
         // Get stress due to notification type
         switch (notification.type) {
@@ -127,6 +125,7 @@ export class NotificationService {
 
         // Get stress due to notification context
         // Currently have 9am-5pm as work, everything else as leisure
+        // TODO: allow customization of context, display context to user
         if (notification.receiveTime >= this.getTimeNum('9:00') && notification.receiveTime <= this.getTimeNum("17:00")) {
             stressContext = 3.64;
         } else {
@@ -147,7 +146,7 @@ export class NotificationService {
         }
 
         // Calculate stress factoring in TTL for decay
-        var stress = stressType * stressContext * stressFreq
+        let stress = stressType * stressContext * stressFreq
         stress *= (notification.ttl - notification.age / notification.ttl);
         return stress;
     }
@@ -170,8 +169,8 @@ export class NotificationService {
 
     // Convert 24H time string to number 0-1440
     getTimeNum(timeStr: string) {
-        var timeArr = timeStr.split(":");
-        var timeNum = (parseInt(timeArr[0]) * 60) + parseInt(timeArr[1]);
+        const timeArr = timeStr.split(":");
+        const timeNum = (parseInt(timeArr[0]) * 60) + parseInt(timeArr[1]);
 
         return timeNum;
     }

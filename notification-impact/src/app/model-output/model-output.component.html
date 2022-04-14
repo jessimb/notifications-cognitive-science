@@ -1,5 +1,5 @@
 <div class="container">
-    <ngx-charts-line-chart [results]="modelData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="false"
+    <ngx-charts-line-chart [results]="modelData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
         [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'time'" [yAxisLabel]="'stress level'"
         [autoScale]="true">
         <ng-template #seriesTooltipTemplate let-model="model">
@@ -15,4 +15,5 @@
         </ng-template>
     </ngx-charts-line-chart>
     <!-- [scheme]="colorScheme" [view]="[700, 400]"  (select)="onSelect($event)" -->
+    <button mat-raised-button color="primary" (click)="clearGraph()">Clear output</button>
 </div>

@@ -82,10 +82,9 @@ export class NotificationService {
             stressArr.push(entry);
         }
 
-        const model = [{
-            name: "Stress",
+        const model = {
             series: stressArr,
-        }];
+        };
 
         console.log(model);
         this.updateChart(model);

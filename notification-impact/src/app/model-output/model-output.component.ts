@@ -8,7 +8,7 @@ import { NotificationService } from '../notification.service';
 })
 export class ModelOutputComponent {
 
-    modelData = [];
+    modelData: any[] = [];
         // {
         //     "name": "Stress",
         //     "series": [
@@ -50,8 +50,13 @@ export class ModelOutputComponent {
     constructor(private notificationService: NotificationService) { 
         // TODO allow multiple lines on the graph, provide way to clear
         this.notificationService.stressModel$.subscribe(model => {
-            this.modelData = model;
+            model.name = this.modelData.length + 1;
+            this.modelData = [...this.modelData, model];
+            console.log(this.modelData)
         })
     }
 
+    clearGraph() {
+        this.modelData = [];
+    }
 }

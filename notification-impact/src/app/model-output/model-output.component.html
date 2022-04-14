@@ -1,7 +1,7 @@
 <div class="container">
     <ngx-charts-line-chart [results]="modelData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
         [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'time'" [yAxisLabel]="'stress level'"
-        [autoScale]="true">
+        [autoScale]="true" [timeline]="true">
         <ng-template #seriesTooltipTemplate let-model="model">
             <div class="tooltip">
                 Hover over the point for more information.

@@ -31,4 +31,8 @@ export class NotificationPanelComponent {
         // TODO - validate input, don't let bad input submit
         this.notificationService.generateModel(this.notificationSchedule);
     }
+
+    deleteEntry(index: number) {
+        this.notificationSchedule.splice(index, 1);
+    }
 }

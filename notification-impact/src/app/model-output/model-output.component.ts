@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NotificationService } from '../notification.service';
+import domtoimage from 'dom-to-image';
 
 @Component({
     selector: 'app-model-output',
@@ -58,4 +59,26 @@ export class ModelOutputComponent {
     clearGraph() {
         this.modelData = [];
     }
+
+    saveChart() {
+        const buttons = document.querySelectorAll('.chart-button');
+        for (let i = 0; i < buttons.length; ++i) {
+            // TODO - make this less jarring or find alt.
+            (buttons[i] as HTMLButtonElement).style.visibility = "hidden";
+        }
+        const chart = document.getElementById('chart')!;
+        domtoimage.toPng(chart).then((dataUrl: string) => {
+            let downloadLink = document.createElement('a');
+            downloadLink.setAttribute('download', 'ModelOutput.png');
+            let url = dataUrl.replace(/^data:image\/png/,'data:application/octet-stream');
+            downloadLink.setAttribute('href', url);
+            downloadLink.click();
+            
+            for (let i = 0; i < buttons.length; ++i) {
+                (buttons[i] as HTMLButtonElement).style.visibility = "visible";
+            }
+        });
+    }
+
+    
 }

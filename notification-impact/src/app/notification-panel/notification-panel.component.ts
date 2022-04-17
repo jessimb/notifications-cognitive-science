@@ -39,7 +39,6 @@ export class NotificationPanelComponent {
     }
 
     submit() {
-        // TODO - validate input, don't let bad input submit
         this.notificationService.generateModel(this.notificationSchedule);
     }
 

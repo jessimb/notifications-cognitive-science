@@ -63,7 +63,6 @@ export class ModelOutputComponent {
     saveChart() {
         const buttons = document.querySelectorAll('.chart-button');
         for (let i = 0; i < buttons.length; ++i) {
-            // TODO - make this less jarring or find alt.
             (buttons[i] as HTMLButtonElement).style.visibility = "hidden";
         }
         const chart = document.getElementById('chart')!;

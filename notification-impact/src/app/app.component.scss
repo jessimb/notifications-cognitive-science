@@ -2,7 +2,27 @@
     display: flex;
     justify-content: space-between;
 
-    * {
+    app-notification-panel,
+    .left {
         margin: 16px;
+    }
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    .info {
+        margin: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .project-info {
+        margin-right: 8px;
     }
 }

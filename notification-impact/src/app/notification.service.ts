@@ -78,6 +78,8 @@ export class NotificationService {
             const entry = {
                 name: this.getDate(currTime),
                 value: totalStress,
+                prettyTime: this.getPrettyTime(currTime),
+                // TODO: add tooltipText iff there was a notif
             };
             stressArr.push(entry);
         }
@@ -96,6 +98,24 @@ export class NotificationService {
         const min = timeNum % 60;
 
         return new Date(2022, 4, 1, hours, min);
+    }
+
+    getPrettyTime(timeNum: number): string {
+      let hours = Math.floor(timeNum / 60);
+      
+      const min = (timeNum % 60);
+      let minString = min.toString();
+      if (min < 10) {
+        minString = '0' + minString;
+      }
+
+      let suffix = 'AM';
+      if (hours > 12) {
+        suffix = 'PM';
+        hours -= 12;
+      }
+
+      return `${hours}:${minString} ${suffix}`;
     }
 
     // Calculate stress
@@ -122,13 +142,30 @@ export class NotificationService {
                 stressType = 0;
         }
 
-        // Get stress due to notification context
-        // Currently have 9am-5pm as work, everything else as leisure
-        // TODO: allow customization of context, display context to user
-        if (notification.receiveTime >= this.getTimeNum('9:00') && notification.receiveTime <= this.getTimeNum("17:00")) {
-            stressContext = 3.64;
+        // Stress Context constants
+        // TODO: update values
+        const stressWorkSchool = 3.64;
+        const stressVehicle = 1; // TODO
+        const stressCaretaking = 1; // TODO
+        const stressLeisure = 3.30;
+        const stressFitness = 1; // TODO
+
+        // Get stress due to notification context. Schedule should match what's
+        // in app.component.html and getTTL.
+        if (notification.receiveTime < this.getTimeNum('8:30')) {
+          stressContext = stressCaretaking;
+        } else if (notification.receiveTime < this.getTimeNum('9:00')) {
+          stressContext = stressVehicle;
+        } else if (notification.receiveTime < this.getTimeNum('17:00')) {
+          stressContext = stressWorkSchool;
+        } else if (notification.receiveTime < this.getTimeNum('18:00')) {
+          stressContext = stressFitness;
+        } else if (notification.receiveTime < this.getTimeNum('18:30')) {
+          stressContext = stressVehicle;
+        } else if (notification.receiveTime < this.getTimeNum('19:00')) {
+          stressContext = stressLeisure;
         } else {
-            stressContext = 3.30;
+          stressContext = stressCaretaking;
         }
 
         // Get stress due to notification frequency
@@ -151,7 +188,7 @@ export class NotificationService {
     }
 
     // Get TTL based on receive time of notification
-    // Currently 9am-5pm is work/school, everything else is leisure
+    // Schedule should match what's in app.component.html and getStress.
     getTTL(receiveTime: number) {
         // TTL constants
         const ttlWorkSchool = 6;
@@ -160,10 +197,21 @@ export class NotificationService {
         const ttlLeisure = 5;
         const ttlFitness = 4;
 
-        if (this.getTimeNum("09:00") >= receiveTime && receiveTime <= this.getTimeNum("17:00")) {
-            return ttlWorkSchool;
+        if (receiveTime < this.getTimeNum('8:30')) {
+          return ttlCaretaking;
+        } else if (receiveTime < this.getTimeNum('9:00')) {
+          return ttlVehicle;
+        } else if (receiveTime < this.getTimeNum('17:00')) {
+          return ttlWorkSchool;
+        } else if (receiveTime < this.getTimeNum('18:00')) {
+          return ttlFitness
+        } else if (receiveTime < this.getTimeNum('18:30')) {
+          return ttlVehicle;
+        } else if (receiveTime < this.getTimeNum('19:00')) {
+          return ttlLeisure;
+        } else {
+          return ttlCaretaking;
         }
-        return ttlLeisure;
     }
 
     // Convert 24H time string to number 0-1440

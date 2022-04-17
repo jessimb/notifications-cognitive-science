@@ -9,12 +9,12 @@
         </ng-template>
         <ng-template #tooltipTemplate let-model="model">
             <div class="tooltip">
-                Stress level: {{model.value}}
+                <p>Time: {{model.prettyTime}}</p>
+                <p>Stress level: {{model.value}}</p>
                 <p *ngIf="model.tooltipText">{{model.tooltipText}}</p>
             </div>
         </ng-template>
     </ngx-charts-line-chart>
-    <!-- [scheme]="colorScheme" [view]="[700, 400]"  (select)="onSelect($event)" -->
-    <button mat-raised-button class="chart-button" color="primary" (click)="clearGraph()">Clear output</button>
+    <button mat-raised-button class="chart-button clear" color="primary" (click)="clearGraph()">Clear output</button>
     <button mat-raised-button class="chart-button" color="primary" (click)="saveChart()">Save chart image</button>
 </div>

@@ -1,3 +1,4 @@
+import { HashLocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
 import { NotificationConfigEntry, NotificationService } from '../notification.service';
 
@@ -25,6 +26,16 @@ export class NotificationPanelComponent {
             frequency: 0,
         } as NotificationConfigEntry;
         this.notificationSchedule.push(entry);
+    }
+
+    getSubmitValid(): boolean {
+        for (const entry of this.notificationSchedule) {
+            if (!entry.type) return false;
+            if (!entry.startTime) return false;
+            if (!entry.count) return false;
+            if (!entry.frequency) return false;
+        }
+        return true;
     }
 
     submit() {

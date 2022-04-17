@@ -102,7 +102,7 @@ export class NotificationService {
 
     getPrettyTime(timeNum: number): string {
       let hours = Math.floor(timeNum / 60);
-      
+
       const min = (timeNum % 60);
       let minString = min.toString();
       if (min < 10) {
@@ -142,13 +142,12 @@ export class NotificationService {
                 stressType = 0;
         }
 
-        // Stress Context constants
-        // TODO: update values
+        // Stress context constants
         const stressWorkSchool = 3.64;
-        const stressVehicle = 1; // TODO
-        const stressCaretaking = 1; // TODO
+        const stressVehicle = 3.58;
+        const stressCaretaking = 3.11;
         const stressLeisure = 3.30;
-        const stressFitness = 1; // TODO
+        const stressFitness = 3.28;
 
         // Get stress due to notification context. Schedule should match what's
         // in app.component.html and getTTL.

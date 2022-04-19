@@ -59,6 +59,7 @@ export class NotificationService {
         for (let currTime = 0; currTime < 1440 ; currTime++) {
             // Start at 0 stress for each minute
             let totalStress = 0;
+            let typesArr = [];
 
             // Get stress for each notification at currTime
             for (let n = 0; n < notifications.length; n++) {
@@ -70,17 +71,21 @@ export class NotificationService {
                         continue;
                     } else {
                         totalStress += this.getStress(notifications[n]);
+                        typesArr.push(notifications[n].type)
                     }
                 }
             }
 
             // Add totalStress at currTime to output array
-            const entry = {
+            const entry : any = {
                 name: this.getDate(currTime),
                 value: totalStress,
                 prettyTime: this.getPrettyTime(currTime),
-                // TODO: add tooltipText iff there was a notif
             };
+            if (typesArr.length > 0) {
+                // Add tooltipText iff there was a notif
+                entry.tooltipText = 'Type(s): ' + typesArr.join(', ');
+            }
             stressArr.push(entry);
         }
 

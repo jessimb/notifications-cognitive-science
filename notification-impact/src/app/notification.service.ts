@@ -84,7 +84,7 @@ export class NotificationService {
             };
             if (typesArr.length > 0) {
                 // Add tooltipText iff there was a notif
-                entry.tooltipText = 'Type(s): ' + typesArr.join(', ');
+                entry.tooltipText = 'Notifications(s): ' + typesArr.join(', ');
             }
             stressArr.push(entry);
         }

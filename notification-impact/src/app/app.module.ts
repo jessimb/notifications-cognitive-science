@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { StressBarComponent } from './stress-bar/stress-bar.component';
         NgxChartsModule,
         MatSelectModule,
         MatInputModule,
+        MatTooltipModule,
     ],
     providers: [NotificationService],
     bootstrap: [AppComponent]

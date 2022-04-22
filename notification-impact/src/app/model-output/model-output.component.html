@@ -18,3 +18,4 @@
     <button mat-raised-button class="chart-button clear" color="primary" (click)="clearGraph()" [disabled]="modelData.length === 0">Clear output</button>
     <button mat-raised-button class="chart-button" color="primary" (click)="saveChart()" [disabled]="modelData.length === 0">Save chart image</button>
 </div>
+<div class="zero-state" *ngIf="modelData.length === 0"><p>Simulate a notification schedule to see the model output.</p></div>

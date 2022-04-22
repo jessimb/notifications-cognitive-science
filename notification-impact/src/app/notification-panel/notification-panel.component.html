@@ -26,5 +26,7 @@
 </div>
 <div class="actions">
     <button mat-raised-button color="primary" (click)="appendBlankEntry()">Add New Entry</button>
-    <button mat-raised-button color="primary" (click)="submit()" [disabled]="!getSubmitValid()">Simulate</button>
+    <div matTooltip="{{tooltipText}}" [matTooltipDisabled]="getSubmitValid()">
+        <button mat-raised-button color="primary" (click)="submit()" [disabled]="!getSubmitValid()">Simulate</button>
+    </div>
 </div>

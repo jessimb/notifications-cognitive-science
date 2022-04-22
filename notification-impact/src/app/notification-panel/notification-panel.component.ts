@@ -14,6 +14,8 @@ export class NotificationPanelComponent {
     
     notificationSchedule: NotificationConfigEntry[] = [];
 
+    tooltipText = '';
+
     constructor(private notificationService: NotificationService) {
         this.appendBlankEntry();
     }
@@ -29,11 +31,15 @@ export class NotificationPanelComponent {
     }
 
     getSubmitValid(): boolean {
+        if (this.notificationSchedule.length === 0) {
+            this.tooltipText = 'Add a least one entry';
+            return false;
+        }
         for (const entry of this.notificationSchedule) {
-            if (!entry.type) return false;
-            if (!entry.startTime) return false;
-            if (!entry.count) return false;
-            if (!entry.frequency) return false;
+            if (!entry.type || !entry.startTime || !entry.count || !entry.frequency)  {
+                this.tooltipText = 'Complete all entry fields';
+                return false;
+            }
         }
         return true;
     }

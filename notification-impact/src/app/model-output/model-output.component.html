@@ -15,6 +15,6 @@
             </div>
         </ng-template>
     </ngx-charts-line-chart>
-    <button mat-raised-button class="chart-button clear" color="primary" (click)="clearGraph()">Clear output</button>
-    <button mat-raised-button class="chart-button" color="primary" (click)="saveChart()">Save chart image</button>
+    <button mat-raised-button class="chart-button clear" color="primary" (click)="clearGraph()" [disabled]="modelData.length === 0">Clear output</button>
+    <button mat-raised-button class="chart-button" color="primary" (click)="saveChart()" [disabled]="modelData.length === 0">Save chart image</button>
 </div>

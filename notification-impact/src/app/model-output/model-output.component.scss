@@ -20,14 +20,18 @@ p {
     background-color: #E0E0E0;
     border-radius: 12px;
     width: 20vw;
-    height: 25vh;
+    height: 20vh;
     margin: 0 auto;
     position: absolute;
     top: 15vh;
     left: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     p {
         margin: 20px;
         text-align: center;
+        font-size: 16px;
     }
 }

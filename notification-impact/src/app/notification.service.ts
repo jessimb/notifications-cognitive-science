@@ -38,7 +38,7 @@ export class NotificationService {
     }
 
     generateModel(notifConfig: NotificationConfigEntry[]) {
-        console.log(notifConfig);
+        // console.log(notifConfig);
 
         let notifications = [];
         let stressArr = [];
@@ -99,7 +99,7 @@ export class NotificationService {
             series: stressArr,
         };
 
-        console.log(model);
+        // console.log(model);
         this.updateChart(model);
     }
 

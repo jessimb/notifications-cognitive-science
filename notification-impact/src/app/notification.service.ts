@@ -192,8 +192,8 @@ export class NotificationService {
         }
 
         // Calculate stress factoring in TTL for decay
-        let stress = stressType * stressContext * stressFreq
-        stress *= (notification.ttl - notification.age / notification.ttl);
+        let stress = stressType * stressContext * stressFreq;
+        stress *= ((notification.ttl - notification.age) / notification.ttl);
         return stress;
     }
 

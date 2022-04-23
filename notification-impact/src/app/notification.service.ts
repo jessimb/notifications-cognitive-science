@@ -49,7 +49,7 @@ export class NotificationService {
 
             // Create 'count' notifications per notif config entry
             for (let j = 0; j < notifConfig[i].count; j++) {
-                const rtime = startTimeNum + (j * notifConfig[i].interval)
+                const rtime = startTimeNum + (j * notifConfig[i].interval);
                 const entry = {
                     type: notifConfig[i].type,
                     interval: notifConfig[i].interval,
@@ -70,15 +70,15 @@ export class NotificationService {
             // Get stress for each notification at currTime
             for (let n = 0; n < notifications.length; n++) {
                 if (notifications[n].receiveTime <= currTime) {
+                  // Remove notification if expired
+                  if (notifications[n].age >= notifications[n].ttl) {
+                    notifications.splice(n, 1);
+                    n -= 1;
+                  } else {
+                    totalStress += this.getStress(notifications[n]);
+                    typesArr.push(notifications[n].type)
                     notifications[n].age++;
-                    // Remove notification if expired
-                    if (notifications[n].age == notifications[n].ttl) {
-                        notifications.splice(n, 1);
-                        continue;
-                    } else {
-                        totalStress += this.getStress(notifications[n]);
-                        typesArr.push(notifications[n].type)
-                    }
+                  }
                 }
             }
 
@@ -121,7 +121,9 @@ export class NotificationService {
       }
 
       let suffix = 'AM';
-      if (hours > 12) {
+      if (hours == 12) {
+        suffix = 'PM';
+      } else if (hours > 12) {
         suffix = 'PM';
         hours -= 12;
       }

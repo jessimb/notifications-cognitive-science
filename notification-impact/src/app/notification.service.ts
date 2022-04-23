@@ -5,7 +5,7 @@ export interface NotificationConfigEntry {
   type: string,  // Will be one of notificationTypes
   startTime: string,  // 24H format, e.g. 18:30
   count: number,  // How many notifications to send
-  frequency: number,  // Send 1 notificaton every X minutes (interval)
+  interval: number,  // Send 1 notificaton every X minutes (interval)
 }
 
 // Keep up to date with notification-panel
@@ -21,14 +21,20 @@ export class NotificationService {
 
     // Observable sources
     private modelOutput = new Subject<any>();
+    private graphCount = new Subject<number>();
 
     // Observable streams
     stressModel$ = this.modelOutput.asObservable();
+    graphCount$ = this.graphCount.asObservable();
 
     constructor() { }
 
     updateChart(model: any) {
         this.modelOutput.next(model);
+    }
+
+    clearGraphCount() {
+      this.graphCount.next(0);
     }
 
     generateModel(notifConfig: NotificationConfigEntry[]) {
@@ -43,10 +49,10 @@ export class NotificationService {
 
             // Create 'count' notifications per notif config entry
             for (let j = 0; j < notifConfig[i].count; j++) {
-                const rtime = startTimeNum + (j * notifConfig[i].frequency)
+                const rtime = startTimeNum + (j * notifConfig[i].interval)
                 const entry = {
                     type: notifConfig[i].type,
-                    frequency: notifConfig[i].frequency,
+                    interval: notifConfig[i].interval,
                     receiveTime: rtime,
                     age: 0,
                     ttl: this.getTTL(rtime),
@@ -172,16 +178,16 @@ export class NotificationService {
           stressContext = stressCaretaking;
         }
 
-        // Get stress due to notification frequency
-        if (notification.frequency >= 1 && notification.frequency < 5) {
+        // Get stress due to notification interval (fka frequency)
+        if (notification.interval >= 1 && notification.interval < 5) {
             stressFreq = 3.73;
-        } else if (notification.frequency >= 5 && notification.frequency < 15) {
+        } else if (notification.interval >= 5 && notification.interval < 15) {
             stressFreq = 3.58;
-        } else if (notification.frequency >= 15 && notification.frequency < 30) {
+        } else if (notification.interval >= 15 && notification.interval < 30) {
             stressFreq = 3.43;
-        } else if (notification.frequency >= 30 && notification.frequency < 60) {
+        } else if (notification.interval >= 30 && notification.interval < 60) {
             stressFreq = 3.48;
-        } else if (notification.frequency >= 60) {
+        } else if (notification.interval >= 60) {
             stressFreq = 3.31;
         }
 

@@ -1,5 +1,5 @@
 <div class="container" id="chart">
-    <ngx-charts-line-chart [results]="modelData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
+    <ngx-charts-line-chart [results]="modelData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="'Simulation Run'"
         [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'time'" [yAxisLabel]="'stress level'"
         [autoScale]="true" [timeline]="true">
         <ng-template #seriesTooltipTemplate let-model="model">

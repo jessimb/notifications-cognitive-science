@@ -19,7 +19,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Interval (minutes)</mat-label>
-            <input matInput type="number" [(ngModel)]="entry.frequency" required matTooltip="How often to send a notification">
+            <input matInput type="number" [(ngModel)]="entry.interval" required matTooltip="How often to send a notification">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="deleteEntry(i)">Delete</button>    
     </div>

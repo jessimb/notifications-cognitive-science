@@ -1,4 +1,3 @@
-import { HashLocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
 import { NotificationConfigEntry, NotificationService } from '../notification.service';
 
@@ -15,9 +14,14 @@ export class NotificationPanelComponent {
     notificationSchedule: NotificationConfigEntry[] = [];
 
     tooltipText = '';
+    simulationCount = 0;
 
     constructor(private notificationService: NotificationService) {
         this.appendBlankEntry();
+
+        this.notificationService.graphCount$.subscribe(count => {
+            this.simulationCount = 0;
+        });
     }
 
     appendBlankEntry() {
@@ -25,7 +29,7 @@ export class NotificationPanelComponent {
             type: '', 
             startTime: '',
             count: 0,
-            frequency: 0,
+            interval: 0,
         } as NotificationConfigEntry;
         this.notificationSchedule.push(entry);
     }
@@ -36,7 +40,7 @@ export class NotificationPanelComponent {
             return false;
         }
         for (const entry of this.notificationSchedule) {
-            if (!entry.type || !entry.startTime || !entry.count || !entry.frequency)  {
+            if (!entry.type || !entry.startTime || !entry.count || !entry.interval)  {
                 this.tooltipText = 'Complete all entry fields';
                 return false;
             }
@@ -46,6 +50,11 @@ export class NotificationPanelComponent {
 
     submit() {
         this.notificationService.generateModel(this.notificationSchedule);
+        this.simulationCount += 1;
+        setTimeout(() => {
+            const legendItem = document.querySelector(`ngx-charts-legend-entry > span[title="${this.simulationCount}"]`);
+            legendItem?.setAttribute('title', JSON.stringify(this.notificationSchedule, null, '\t'));
+        }, 500);
     }
 
     deleteEntry(index: number) {

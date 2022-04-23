@@ -10,54 +10,18 @@ import domtoimage from 'dom-to-image';
 export class ModelOutputComponent {
 
     modelData: any[] = [];
-        // {
-        //     "name": "Stress",
-        //     "series": [
-        //         {
-        //             "name": new Date(2021, 4, 1, 0, 0, 0),
-        //             "value": 0,
-        //         },
-        //         {
-        //             "name": new Date(2021, 4, 1, 9, 0, 0),
-        //             "value": 15,
-        //             "tooltipText": 'work text'
-        //         },
-        //         {
-        //             "name": new Date(2021, 4, 1, 12, 0, 0),
-        //             "value": 30,
-        //             "tooltipText": 'text here shows up in a tooltip'
-        //         },
-        //         {
-        //             "name": new Date(2021, 4, 1, 18, 0, 0),
-        //             "value": 25,
-        //             "tooltipText": 'we\'ll put notification info in here'
-        //         },
-        //         {
-        //             "name": new Date(2021, 4, 1, 20, 0, 0),
-        //             "value": 55,
-        //         },
-        //         {
-        //             "name": new Date(2021, 4, 1, 22, 0, 0),
-        //             "value": 15,
-        //         },
-        //         {
-        //             "name": new Date(2021, 4, 1, 23, 0, 0),
-        //             "value": 5,
-        //         }
-        //     ]
-        // },
-    // ]
 
     constructor(private notificationService: NotificationService) { 
         this.notificationService.stressModel$.subscribe(model => {
             model.name = this.modelData.length + 1;
             this.modelData = [...this.modelData, model];
-            console.log(this.modelData)
+            // console.log(this.modelData)
         })
     }
 
     clearGraph() {
         this.modelData = [];
+        this.notificationService.clearGraphCount();
     }
 
     saveChart() {
